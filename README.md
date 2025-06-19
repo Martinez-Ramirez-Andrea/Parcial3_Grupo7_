@@ -1,9 +1,16 @@
-<<<<<<< HEAD
-# Parcial3_Grupo7
-=======
-<<<<<<< HEAD
-# parcia3
-=======
-# parcial3
->>>>>>> 1d2379c9123f04a3cfc38aaa37403d4f646d2e46
->>>>>>> 0f60f9e (Subiendo proyecto)
+# PARCIAL 3 - Observador Académico Digital (OBSAC)
+
+## Descripción del Proyecto:
+Sistema de registro y seguimiento de observaciones académicas o disciplinarias a estudiantes, con alertas y reportes acumulados.
+
+## Requerimientos:
+- Historial de Observaciones por Estudiante  
+- Generación de Reportes PDF  
+- Sistema de Alertas Personalizadas  
+
+## Integrantes del equipo:
+- Edwin Steven Duran Delgado – DD21006  
+- Claudia Elizabeth Martinez Mendez – MM18021  
+- Maybelin Gisselle Guzman Magaña – GM22043  
+- Andrea Lisbeth Martinez Ramirez – MR22142  
+- Tania Sofia Franco Flamenco – FF21003  

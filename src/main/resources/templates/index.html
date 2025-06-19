@@ -5,37 +5,76 @@
     <title>¡Bienvenidos a OBSAC!</title>
 
     <style>
-        body {
-            text-align: center;
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #ffffff;
             font-family: Arial, sans-serif;
-            margin-top: 20px;
         }
-        img {
-            width: 350px;
-            margin-bottom: 3px;
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
         }
+
+        img.logo {
+            width: 380px; 
+            height: auto;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
         h1 {
             color: #030303;
+            font-size: 36px;
+            margin-bottom: 30px;
+            animation: fadeIn 2.5s ease-in-out;
         }
+
         .start-button {
             background-color: #007bff;
             color: white;
-            padding: 20px 50px;
+            padding: 20px 60px;
             border: none;
             border-radius: 12px;
-            font-size: 40px;
+            font-size: 38px;
             cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+            animation: fadeIn 3s ease-in-out;
         }
+
         .start-button:hover {
             background-color: #0056b3;
+            box-shadow: 0 0 25px #007bff, 0 0 40px #007bff;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
-    <img src="/images/logo.png" alt="Logo OBSAC">
-    <h1>¡Bienvenidos a OBSAC!</h1>
-    <form th:action="@{/menu}" method="get">
-        <button class="start-button" type="submit">Iniciar</button>
-    </form>
+    <div class="container">
+        <img src="/images/logo.png" alt="Logo OBSAC" class="logo">
+        <h1>¡Bienvenidos a OBSAC!</h1>
+        <form th:action="@{/menu}" method="get">
+            <button class="start-button" type="submit">Iniciar</button>
+        </form>
+    </div>
 </body>
 </html>

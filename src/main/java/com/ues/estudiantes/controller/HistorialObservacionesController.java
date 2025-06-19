@@ -56,7 +56,7 @@ public class HistorialObservacionesController {
                     fecha
             );
         } else {
-            // Si no hay fecha, obtener todas las observaciones del estudiante filtradas solo por tipo (o todas si tipo también es null)
+            // Si no hay fecha, obtener todas las observaciones del estudiante filtradas solo por tipo 
             historial = observacionRepository.filtrarPorEstudianteYFechaYTipo(
                     id,
                     (tipo != null && !tipo.isEmpty()) ? tipo : null,

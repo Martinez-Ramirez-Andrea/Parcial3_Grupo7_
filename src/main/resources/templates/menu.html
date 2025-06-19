@@ -12,26 +12,52 @@
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
-            padding-top: 100px;
+            padding-top: 80px;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 0 0 10px #0d6efd, 0 0 20px #0d6efd;
+            animation: pulseTitle 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseTitle {
+            from {
+                transform: scale(1);
+                text-shadow: 0 0 10px #0d6efd;
+            }
+            to {
+                transform: scale(1.05);
+                text-shadow: 0 0 25px #0d6efd;
+            }
         }
 
         .menu-container {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            justify-items: center;
             align-items: center;
+            max-width: 700px;
+            margin: 40px auto;
         }
 
         .menu-button {
             background-color: #1f1f1f;
             border: 2px solid #444;
             color: white;
-            padding: 25px 50px;
-            margin: 20px;
+            padding: 25px 40px;
             border-radius: 12px;
-            font-size: 24px;
+            font-size: 22px;
             cursor: pointer;
             transition: 0.3s;
             width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 5px rgba(13, 110, 253, 0.3);
         }
 
         .menu-button i {
@@ -40,15 +66,20 @@
         }
 
         .menu-button:hover {
-            background-color: #333;
-            border-color: #666;
+            background-color: #2c2c2c;
+            border-color: #0d6efd;
+            box-shadow: 0 0 15px #0d6efd, 0 0 25px #0d6efd;
+        }
+
+        form {
+            margin: 0;
         }
     </style>
 </head>
 <body>
-    <div class="menu-container">
-        <h1>MENU PRINCIPAL</h1>
+    <h1>MENU PRINCIPAL</h1>
 
+    <div class="menu-container">
         <form th:action="@{/estudiantes}" method="get">
             <button class="menu-button" type="submit">
                 <i class="fas fa-user-graduate"></i> Estudiantes

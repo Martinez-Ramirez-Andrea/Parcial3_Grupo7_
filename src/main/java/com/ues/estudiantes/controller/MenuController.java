@@ -6,10 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MenuController {
 
-    @GetMapping("/")
-    public String redirectToMenu() {
-        return "redirect:/menu";
-    }
+
 
     @GetMapping("/menu")
     public String mostrarMenu() {

@@ -28,7 +28,7 @@ public class ObservacionController {
         this.service = service;
     }
 
-    // Tus métodos existentes...
+    
 
     @GetMapping(value = "/reporte", produces = MediaType.APPLICATION_PDF_VALUE)
     public void descargarReportePdf(HttpServletResponse response) throws DocumentException, IOException {

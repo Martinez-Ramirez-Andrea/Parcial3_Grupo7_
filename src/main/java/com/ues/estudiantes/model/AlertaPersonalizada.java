@@ -12,7 +12,12 @@ public class AlertaPersonalizada {
     private int numeroObservaciones;
     private int periodoDias;
 
-    private Long tutorId; // ID del tutor que configura la alerta
+    private String tipoObservacion;
+
+    @ManyToOne
+    private Estudiante estudiante;
+
+    private Long tutorId; 
 
     // Getters y setters
 
@@ -38,6 +43,22 @@ public class AlertaPersonalizada {
 
     public void setPeriodoDias(int periodoDias) {
         this.periodoDias = periodoDias;
+    }
+
+    public String getTipoObservacion() {
+        return tipoObservacion;
+    }
+
+    public void setTipoObservacion(String tipoObservacion) {
+        this.tipoObservacion = tipoObservacion;
+    }
+
+    public Estudiante getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
     }
 
     public Long getTutorId() {

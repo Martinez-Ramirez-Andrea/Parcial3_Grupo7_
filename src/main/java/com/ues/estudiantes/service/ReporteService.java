@@ -54,7 +54,7 @@ public class ReporteService {
             tabla.addCell(obs.getDescripcion());
             tabla.addCell(obs.getTipo());
             tabla.addCell(obs.getFecha() != null ? obs.getFecha().toString() : "Sin fecha");
-            tabla.addCell(obs.getEstudiante().getNombre()); // Suponiendo que `getNombre()` existe
+            tabla.addCell(obs.getEstudiante().getNombre()); 
         }
 
         documento.add(tabla);

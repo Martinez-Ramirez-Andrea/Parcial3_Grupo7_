@@ -23,7 +23,7 @@ public class AlertaController {
     @GetMapping("/crear")
     public String mostrarFormulario(Model model) {
         model.addAttribute("alertaGenerica", new AlertaGenerica());
-        return "crear_alerta_generica";  // nombre de la vista HTML para alertas genéricas
+        return "crear_alerta_generica";  // nombre de la vista HTML para alertas genericas
     }
 
     @PostMapping("/guardar")
