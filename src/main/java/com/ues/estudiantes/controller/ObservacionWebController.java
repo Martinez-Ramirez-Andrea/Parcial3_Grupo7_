@@ -1,9 +1,9 @@
 package com.ues.estudiantes.controller;
 
-import com.ues.estudiantes.model.Observacion;
 import com.ues.estudiantes.model.Estudiante;
-import com.ues.estudiantes.service.ObservacionService;
+import com.ues.estudiantes.model.Observacion;
 import com.ues.estudiantes.service.EstudianteService;
+import com.ues.estudiantes.service.ObservacionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -55,8 +55,8 @@ public class ObservacionWebController {
 
     @GetMapping("/buscar")
     public String buscar(@RequestParam("q") String q, Model model) {
-        model.addAttribute("observaciones", observacionService.buscar(q));
-        return "observaciones/lista"; // la misma vista que lista las observaciones
-}
-
+        model.addAttribute("observaciones", observacionService.buscarPorTipo(null, q)); 
+        
+        return "observaciones/lista";
+    }
 }

@@ -1,28 +1,27 @@
 package com.ues.estudiantes.controller;
 
-import java.util.Date;
-import java.util.List;
-
+import com.ues.estudiantes.model.Estudiante;
+import com.ues.estudiantes.model.Observacion;
+import com.ues.estudiantes.repository.EstudianteRepository;
+import com.ues.estudiantes.service.ObservacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam; 
+import org.springframework.web.bind.annotation.*;
 
-import com.ues.estudiantes.model.Estudiante;
-import com.ues.estudiantes.model.Observacion;
-import com.ues.estudiantes.repository.EstudianteRepository;
-import com.ues.estudiantes.repository.ObservacionRepository;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/historial")
 public class HistorialObservacionesController {
 
     @Autowired
-    private ObservacionRepository observacionRepository;
+    private ObservacionService observacionService;
 
     @Autowired
     private EstudianteRepository estudianteRepository;
@@ -31,44 +30,30 @@ public class HistorialObservacionesController {
     public String verHistorial(
             @PathVariable Long id,
             @RequestParam(required = false) String tipo,
-            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date desde,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date hasta,
             Model model
     ) {
-
-        System.out.println("DEBUG >>> tipo: " + tipo + ", fecha: " + fecha);
-
+        System.out.println("DEBUG >>> tipo: " + tipo + ", desde: " + desde + ", hasta: " + hasta);
 
         Estudiante estudiante = estudianteRepository.findById(id).orElse(null);
-
-
 
         if (estudiante == null) {
             model.addAttribute("error", "Estudiante no encontrado");
             return "error";
         }
 
-        List<Observacion> historial;
+        // Convertir Date a LocalDate para el service
+        LocalDate desdeLocal = (desde != null) ? Instant.ofEpochMilli(desde.getTime()).atZone(ZoneId.systemDefault()).toLocalDate() : null;
+        LocalDate hastaLocal = (hasta != null) ? Instant.ofEpochMilli(hasta.getTime()).atZone(ZoneId.systemDefault()).toLocalDate() : null;
 
-        if (fecha != null) {
-            historial = observacionRepository.filtrarPorEstudianteYFechaExactaYTipo(
-                    id,
-                    (tipo != null && !tipo.isEmpty()) ? tipo : null,
-                    fecha
-            );
-        } else {
-            // Si no hay fecha, obtener todas las observaciones del estudiante filtradas solo por tipo 
-            historial = observacionRepository.filtrarPorEstudianteYFechaYTipo(
-                    id,
-                    (tipo != null && !tipo.isEmpty()) ? tipo : null,
-                    null,
-                    null
-            );
-        }
+        List<Observacion> historial = observacionService.buscarPorFiltros(id, tipo, desdeLocal, hastaLocal);
 
         model.addAttribute("estudiante", estudiante);
         model.addAttribute("historial", historial);
         model.addAttribute("tipo", tipo);
-        model.addAttribute("fecha", fecha);
+        model.addAttribute("desde", desde);
+        model.addAttribute("hasta", hasta);
 
         return "historial/historial-observaciones";
     }

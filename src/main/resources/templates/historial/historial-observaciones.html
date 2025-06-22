@@ -66,22 +66,28 @@
 <h2 th:text="'Historial de ' + ${estudiante.nombre} + ' ' + ${estudiante.apellido}"></h2>
 
 <form class="row g-3 mb-4" th:action="@{/historial/{id}(id=${estudiante.id})}" method="get">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <select name="tipo" class="form-select">
             <option th:selected="${tipo == null}" value="">-- Tipo de Observación --</option>
             <option value="Académica" th:selected="${tipo == 'Académica'}">Académica</option>
             <option value="Disciplinaria" th:selected="${tipo == 'Disciplinaria'}">Disciplinaria</option>
         </select>
     </div>
-    <div class="col-md-4">
-        <input type="date" name="fecha" class="form-control"
-               th:value="${fecha != null ? #dates.format(fecha, 'yyyy-MM-dd') : ''}" 
-               placeholder="Fecha de observación">
+    <div class="col-md-3">
+        <input type="date" name="desde" class="form-control"
+               th:value="${desde != null ? #dates.format(desde, 'yyyy-MM-dd') : ''}"
+               placeholder="Desde">
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
+        <input type="date" name="hasta" class="form-control"
+               th:value="${hasta != null ? #dates.format(hasta, 'yyyy-MM-dd') : ''}"
+               placeholder="Hasta">
+    </div>
+    <div class="col-md-3">
         <button type="submit" class="btn btn-primary w-100">🔍 Filtrar</button>
     </div>
 </form>
+
 
 <table class="table table-striped">
     <thead>
