@@ -43,10 +43,10 @@ public class PdfExportController {
         document.add(titulo);
         document.add(new Paragraph(" ")); // espacio
 
-        // Tabla
-        PdfPTable tabla = new PdfPTable(3); // columnas: descripción, tipo, fecha
+        // Tabla con 4 columnas: Estudiante, Descripción, Tipo, Fecha
+        PdfPTable tabla = new PdfPTable(4);
         tabla.setWidthPercentage(100);
-        tabla.setWidths(new float[]{4.5f, 2.5f, 2.5f});
+        tabla.setWidths(new float[]{3.5f, 4.5f, 2.5f, 2.5f});
         tabla.setSpacingBefore(10);
 
         // Encabezados
@@ -55,6 +55,10 @@ public class PdfExportController {
         cell.setPadding(5);
 
         Font fontEncabezado = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+
+        cell.setPhrase(new Phrase("Estudiante", fontEncabezado));
+        tabla.addCell(cell);
+
         cell.setPhrase(new Phrase("Descripción", fontEncabezado));
         tabla.addCell(cell);
 
@@ -66,6 +70,11 @@ public class PdfExportController {
 
         // Contenido
         for (Observacion obs : lista) {
+            String estudianteNombre = (obs.getEstudiante() != null)
+                ? obs.getEstudiante().getNombre() + " " + obs.getEstudiante().getApellido()
+                : "Sin asignar";
+
+            tabla.addCell(estudianteNombre);
             tabla.addCell(obs.getDescripcion());
             tabla.addCell(obs.getTipo());
             tabla.addCell(obs.getFecha() != null ? obs.getFecha().toString() : "Sin fecha");
