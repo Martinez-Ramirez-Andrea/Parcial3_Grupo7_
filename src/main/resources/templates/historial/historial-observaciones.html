@@ -62,7 +62,7 @@
     </style>
 </head>
 <body class="container mt-5">
-
+<div th:replace="fragmentos/encabezado :: body"></div>
 <h2 th:text="'Historial de ' + ${estudiante.nombre} + ' ' + ${estudiante.apellido}"></h2>
 
 <form class="row g-3 mb-4" th:action="@{/historial/{id}(id=${estudiante.id})}" method="get">
